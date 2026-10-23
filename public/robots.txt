@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ingridi-designer.netlify.app/sitemap.xml
