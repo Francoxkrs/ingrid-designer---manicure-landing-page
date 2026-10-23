@@ -24,21 +24,24 @@ export function initNav(): void {
     }
   });
 
-  // O botão fixo aparece depois do hero e sai de cena perto do convite final
+  // O botão fixo aparece depois do hero e sai de cena onde já há um botão de WhatsApp
+  // à vista: no "Monte a sua" e no convite final
   const fab = document.querySelector<HTMLElement>("[data-fab]");
   const hero = document.querySelector("[data-hero]");
-  const fim = document.querySelector("#agendar");
   if (!fab || !hero) return;
   let passou = false;
-  let perto = false;
-  const sync = () => fab.classList.toggle("is-on", passou && !perto);
+  const perto = new Set<Element>();
+  const sync = () => fab.classList.toggle("is-on", passou && perto.size === 0);
   new IntersectionObserver(([e]) => {
     passou = !e.isIntersecting;
     sync();
   }).observe(hero);
-  if (fim)
-    new IntersectionObserver(([e]) => {
-      perto = e.isIntersecting;
-      sync();
-    }).observe(fim);
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) perto.add(e.target);
+      else perto.delete(e.target);
+    }
+    sync();
+  });
+  document.querySelectorAll("#monte, #agendar").forEach((el) => io.observe(el));
 }
