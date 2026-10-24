@@ -26,6 +26,12 @@ Contraste conferido com axe (WCAG 2.2 AA): verde sobre creme, verde sobre rosa (
 ## Grid e ritmo
 12 colunas, margem externa `clamp(16px, 4vw, 40px)`, gap entre seções `clamp(96px, 14vw, 200px)`. Texto sempre de um lado e foto, lista ou figura do outro.
 
+## Versão 2 (pedido do Silas: mais impacto, no nível do site da Tali)
+- Hero escuro com o "Ingridi" gigante que se escreve (contorno → cor), foto em arco por cima, frascos de gel em SVG flutuando, glitter dourado e selo girando "agende pelo whatsapp".
+- Faixa rosa inclinada com os serviços, destaques em anéis como os do Instagram dela, galeria horizontal presa no desktop, frase dela acendendo no scroll, letras dos títulos subindo, glitter no cursor e etiqueta "quero essa" sobre as fotos.
+- Sem tela de loading: no celular a página abre na hora (FCP/LCP ~1,5s em 3G lento + CPU 4x, 127 KB).
+- "Reduzir movimento": fica o que não desloca a tela (fades, letras, frase acendendo, glitter); saem parallax, galeria presa, faixa correndo e frascos boiando.
+
 ## Princípios
 - Um botão rosa = WhatsApp. Toda ação de agendar tem a mesma cor e o mesmo raio (pílula).
 - Cada foto aparece uma vez só no site.

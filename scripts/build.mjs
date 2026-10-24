@@ -11,8 +11,13 @@ async function inject() {
   // Query string evita o cache de módulos do Node no modo watch
   const r = await import(pathToFileURL(resolve("dist/js/render.js")).href + `?t=${Date.now()}`);
   const logo = readFileSync("public/img/ingridi.svg", "utf8").replace("<svg ", `<svg class="logo" aria-hidden="true" focusable="false" `);
+  // Versão grande do hero: o contorno "se escreve" antes de ganhar cor
+  const logoDesenho = logo
+    .replace(`class="logo"`, `class="logo logo--desenho"`)
+    .replace(`<path `, `<path pathLength="1" `);
   const slots = {
     logo,
+    "logo-desenho": logoDesenho,
     filtros: r.filtros(),
     portfolio: r.portfolio(),
     servicos: r.listaServicos(),

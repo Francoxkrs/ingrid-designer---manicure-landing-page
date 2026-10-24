@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -23,6 +23,7 @@
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="preload" href="/fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/bodoni-moda-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
   <script type="module" src="/js/main.js"></script>
@@ -43,6 +44,26 @@
   </script>
 </head>
 <body>
+  <svg width="0" height="0" class="sr-only" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="brilho" viewBox="0 0 24 24"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" fill="currentColor"/></symbol>
+      <symbol id="coracao" viewBox="0 0 24 24"><path d="M12 21s-9-5.6-9-12.1C3 5.6 5.4 3.5 8.2 3.5c1.7 0 3 .9 3.8 2.1.8-1.2 2.1-2.1 3.8-2.1 2.8 0 5.2 2.1 5.2 5.4C21 15.4 12 21 12 21Z" fill="currentColor"/></symbol>
+      <!-- frasco de esmalte em gel: tampa alta, anel dourado e vidro com a cor -->
+      <symbol id="frasco" viewBox="0 0 120 220">
+        <rect x="38" y="4" width="44" height="92" rx="10" fill="#141414"/>
+        <rect x="44" y="12" width="6" height="74" rx="3" fill="#ffffff" opacity=".18"/>
+        <rect x="34" y="92" width="52" height="14" rx="4" fill="#d9b67c"/>
+        <rect x="34" y="96" width="52" height="3" fill="#fff4d6" opacity=".6"/>
+        <path d="M24 112c0-4 4-8 8-8h56c4 0 8 4 8 8v86c0 10-8 18-18 18H42c-10 0-18-8-18-18Z" fill="var(--cor-frasco, #ee8f98)"/>
+        <path d="M24 112c0-4 4-8 8-8h56c4 0 8 4 8 8v86c0 10-8 18-18 18H42c-10 0-18-8-18-18Z" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="3"/>
+        <rect x="32" y="116" width="8" height="84" rx="4" fill="#ffffff" opacity=".42"/>
+        <rect x="80" y="122" width="4" height="40" rx="2" fill="#ffffff" opacity=".25"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <canvas class="glitter" data-glitter-canvas aria-hidden="true"></canvas>
+  <div class="cursor-tag" data-cursor aria-hidden="true"><svg><use href="#coracao"/></svg> quero essa</div>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
   <header class="header" data-header>
@@ -70,49 +91,100 @@
 
   <main id="conteudo">
     <section class="hero" id="topo" data-hero>
-      <div class="hero__in wrap">
-        <div class="hero__texto">
-          <h1 class="hero__titulo reveal">Mãos que você vai querer mostrar.</h1>
-          <p class="hero__apoio reveal">Alongamento em fibra de vidro, polygel, banho e esmaltação em gel e design de sobrancelhas com a Ingridi Morokoski, com hora marcada e sem pressa.</p>
-          <div class="hero__acoes reveal">
-            <a class="btn" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vim%20pelo%20seu%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" data-wa="hero">Agendar pelo WhatsApp</a>
-            <a class="link" href="#trabalhos">Ver os trabalhos</a>
-          </div>
-          <p class="hero__nota reveal">Quem responde é a própria Ingridi, com valores e horários livres.</p>
-        </div>
-        <figure class="hero__foto" id="unha-rosa-estrelas">
-          <div class="hero__moldura">
-            <img src="/img/unha-rosa-estrelas-800.webp" srcset="/img/unha-rosa-estrelas-480.webp 480w, /img/unha-rosa-estrelas-800.webp 800w, /img/unha-rosa-estrelas-1200.webp 1200w" sizes="(min-width: 56em) 44vw, 92vw" width="1200" height="1600" alt="Unhas longas amendoadas em rosa chiclete, duas delas translúcidas com estrelas brancas e pontos dourados, sobre um tecido de cetim" fetchpriority="high" decoding="async">
-          </div>
-          <figcaption class="hero__legenda">
-            <span>Rosa chiclete com estrelas, feita pela Ingridi.</span>
-            <a href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vi%20no%20seu%20site%20a%20unha%20rosa%20com%20estrelas%20e%20quero%20uma%20assim.%20Tem%20hor%C3%A1rio%3F" target="_blank" rel="noopener noreferrer" data-wa="hero-foto">Quero essa</a>
-          </figcaption>
+      <div class="hero__palco wrap">
+        <p class="hero__onde">Unhas em gel e sobrancelhas · Campo Grande/MS</p>
+        <div class="hero__nome" aria-hidden="true"><!--@logo-desenho--></div>
+        <figure class="hero__arco" id="unha-rosa-estrelas">
+          <img src="/img/unha-rosa-estrelas-800.webp" srcset="/img/unha-rosa-estrelas-480.webp 480w, /img/unha-rosa-estrelas-800.webp 800w, /img/unha-rosa-estrelas-1200.webp 1200w" sizes="(min-width: 64em) 30vw, 70vw" width="1200" height="1600" alt="Unhas longas amendoadas em rosa chiclete, duas delas translúcidas com estrelas brancas e pontos dourados, sobre um tecido de cetim" fetchpriority="high" decoding="async">
+          <figcaption class="sr-only">Rosa chiclete com estrelas, feita pela Ingridi.</figcaption>
         </figure>
+
+        <svg class="float float--frasco1" data-depth="18" aria-hidden="true"><use href="#frasco"/></svg>
+        <svg class="float float--frasco2" data-depth="-14" aria-hidden="true"><use href="#frasco"/></svg>
+        <svg class="float float--b1" data-depth="26" aria-hidden="true"><use href="#brilho"/></svg>
+        <svg class="float float--b2" data-depth="-20" aria-hidden="true"><use href="#brilho"/></svg>
+        <svg class="float float--b3" data-depth="12" aria-hidden="true"><use href="#brilho"/></svg>
+
+        <a class="selo" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vim%20pelo%20seu%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" data-wa="selo" aria-label="Agendar pelo WhatsApp">
+          <svg class="selo__texto" viewBox="0 0 200 200" aria-hidden="true">
+            <path id="selo-circulo" d="M100 100m-78 0a78 78 0 1 1 156 0a78 78 0 1 1-156 0" fill="none"/>
+            <text><textPath href="#selo-circulo">agende pelo whatsapp ✦ unhas em gel ✦ sobrancelhas ✦ </textPath></text>
+          </svg>
+          <svg class="selo__miolo" aria-hidden="true"><use href="#coracao"/></svg>
+        </a>
+
+        <a class="hero__monte" href="#monte" data-depth="10">
+          <span class="hero__monte-cores" aria-hidden="true"><i></i><i></i><i></i></span>
+          Monte a sua unha e mande pronta
+        </a>
+
+        <div class="hero__base">
+          <h1 class="hero__titulo" data-chars>Mãos que você vai querer mostrar.</h1>
+          <div class="hero__lado">
+            <p class="hero__apoio">Fibra de vidro, polygel, banho e esmaltação em gel e design de sobrancelhas com a Ingridi Morokoski, com hora marcada e sem pressa.</p>
+            <div class="hero__acoes">
+              <a class="btn" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vim%20pelo%20seu%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" data-wa="hero" data-magnetic>Agendar pelo WhatsApp <svg class="btn__ico" aria-hidden="true"><use href="#coracao"/></svg></a>
+              <a class="btn btn--contorno" href="#trabalhos" data-magnetic>Ver os trabalhos</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="trabalhos" id="trabalhos" aria-labelledby="trabalhos-titulo">
-      <div class="wrap">
-        <div class="trabalhos__topo">
-          <h2 class="titulo reveal" id="trabalhos-titulo">Escolha pela foto.</h2>
-          <p class="trabalhos__apoio reveal">Toque em “Quero uma assim” e a mensagem vai pronta, com a unha que você escolheu. É só mandar.</p>
-        </div>
-        <div class="filtros" role="group" aria-label="Filtrar trabalhos por estilo">
-          <!--@filtros-->
-        </div>
-        <p class="sr-only" aria-live="polite" data-filtro-status></p>
-        <ul class="obras">
-          <!--@portfolio-->
+    <div class="faixa-clip">
+    <div class="faixa" aria-label="Serviços">
+      <div class="faixa__trilho" data-marquee>
+        <ul class="faixa__lista">
+          <li>Alongamento em fibra de vidro</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
+          <li>Polygel</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
+          <li>Banho em gel</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
+          <li>Esmaltação em gel</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
+          <li>Pé e mão</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
+          <li>Design de sobrancelhas</li><li aria-hidden="true"><svg><use href="#brilho"/></svg></li>
         </ul>
-        <p class="trabalhos__mais reveal">Tem muito mais no <a href="https://www.instagram.com/ingrididesigner/" target="_blank" rel="noopener noreferrer">Instagram @ingrididesigner</a>.</p>
+      </div>
+    </div>
+    </div>
+
+    <section class="destaques" aria-labelledby="destaques-titulo">
+      <div class="wrap">
+        <h2 class="destaques__titulo" id="destaques-titulo" data-chars>Por onde você quer começar?</h2>
+        <ul class="aneis">
+          <li><a class="anel anel--verde" href="#servico-fibra"><span class="anel__disco"><span>Alongamento em fibra de vidro</span></span><span class="anel__nome">Fibra</span></a></li>
+          <li><a class="anel anel--verde" href="#servico-esmaltacao"><span class="anel__disco"><span>Esmaltação em gel</span></span><span class="anel__nome">Esmalt. em gel</span></a></li>
+          <li><a class="anel anel--verde" href="#servico-pe-mao"><span class="anel__disco"><span>Pé e mão simples</span></span><span class="anel__nome">Pé e mão</span></a></li>
+          <li><a class="anel anel--rosa" href="#servico-banho"><span class="anel__disco"><span>Banho em gel</span></span><span class="anel__nome">Banho em gel</span></a></li>
+          <li><a class="anel anel--creme" href="#servico-polygel"><span class="anel__disco"><span>Alongamento em polygel</span></span><span class="anel__nome">Polygel</span></a></li>
+          <li><a class="anel anel--creme" href="#sobrancelhas"><span class="anel__disco"><span>Design de sobrancelhas</span></span><span class="anel__nome">Sobrancelha</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="trabalhos" id="trabalhos" aria-labelledby="trabalhos-titulo" data-hscroll>
+      <div class="trabalhos__pino">
+        <div class="trabalhos__topo wrap">
+          <h2 class="titulo" id="trabalhos-titulo" data-chars>Escolha pela foto.</h2>
+          <p class="trabalhos__apoio">Toque em “Quero uma assim” e a mensagem vai pronta, com a unha que você escolheu. É só mandar.</p>
+          <div class="filtros" role="group" aria-label="Filtrar trabalhos por estilo">
+            <!--@filtros-->
+          </div>
+          <p class="sr-only" aria-live="polite" data-filtro-status></p>
+        </div>
+        <ul class="obras" data-trilho>
+          <!--@portfolio-->
+          <li class="obras__fim">
+            <p>Tem muito mais no Instagram.</p>
+            <a class="btn btn--contorno" href="https://www.instagram.com/ingrididesigner/" target="_blank" rel="noopener noreferrer">@ingrididesigner</a>
+          </li>
+        </ul>
+        <div class="trabalhos__barra wrap" aria-hidden="true"><span data-progresso></span></div>
       </div>
     </section>
 
     <section class="monte" id="monte" aria-labelledby="monte-titulo">
       <div class="monte__in wrap">
         <div class="monte__texto">
-          <h2 class="titulo reveal" id="monte-titulo">Monte a sua antes de chegar.</h2>
+          <h2 class="titulo" data-chars id="monte-titulo">Monte a sua antes de chegar.</h2>
           <p class="monte__apoio reveal">Escolha técnica, formato, cor e acabamento. A Ingridi recebe a sua ideia pronta e responde com valor e horário.</p>
         </div>
         <form class="studio" data-studio aria-label="Monte a sua unha">
@@ -124,7 +196,7 @@
           </div>
           <div class="monte__saida">
             <p class="monte__resumo"><span class="monte__label">Sua escolha</span> <output data-studio-resumo>Fibra de vidro, amendoada, verde-água</output></p>
-            <a class="btn" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Montei%20minha%20unha%20no%20seu%20site%3A%20Fibra%20de%20vidro%2C%20amendoada%2C%20verde-%C3%A1gua.%20Quanto%20fica%20e%20quando%20tem%20hor%C3%A1rio%3F" target="_blank" rel="noopener noreferrer" data-studio-cta data-wa="monte">Mandar minha escolha</a>
+            <a class="btn" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Montei%20minha%20unha%20no%20seu%20site%3A%20Fibra%20de%20vidro%2C%20amendoada%2C%20verde-%C3%A1gua.%20Quanto%20fica%20e%20quando%20tem%20hor%C3%A1rio%3F" target="_blank" rel="noopener noreferrer" data-studio-cta data-wa="monte" data-magnetic>Mandar minha escolha</a>
             <a class="link link--claro" href="#unha-verde-agua-arte" data-studio-foto>Ver essa cor num trabalho dela</a>
           </div>
         </div>
@@ -134,7 +206,7 @@
     <section class="servicos" id="servicos" aria-labelledby="servicos-titulo">
       <div class="servicos__in wrap">
         <div class="servicos__lado">
-          <h2 class="titulo reveal" id="servicos-titulo">Qual serviço é pra você.</h2>
+          <h2 class="titulo" data-chars id="servicos-titulo">Qual serviço é pra você.</h2>
           <p class="servicos__apoio reveal">Ficou na dúvida? Manda uma foto da sua unha no WhatsApp e a Ingridi te indica o melhor caminho.</p>
         </div>
         <ul class="servicos__lista">
@@ -154,7 +226,7 @@
           <g class="olho"><path class="olho__palpebra" d="M150 300Q345 185 540 262"/><path class="olho__baixo" d="M150 300Q350 375 540 262"/><clipPath id="olho-recorte"><path d="M150 300Q345 185 540 262Q350 375 150 300Z"/></clipPath><g clip-path="url(#olho-recorte)"><circle class="olho__iris" cx="338" cy="282" r="50"/><circle class="olho__pupila" cx="338" cy="282" r="20"/></g><g class="olho__cilios"><path d="M235.8 258.7Q231.7 247.8 231.9 242.4"/><path d="M256.1 251.6Q252.3 239.8 253.2 233.9"/><path d="M276.4 245.6Q272.9 232.8 274.7 226.5"/><path d="M296.6 240.7Q293.6 226.8 296.4 220.0"/><path d="M316.9 236.7Q314.4 221.7 318.4 214.5"/><path d="M337.2 233.8Q335.3 217.7 340.6 210.0"/><path d="M357.5 232.0Q356.3 214.6 363.1 206.6"/><path d="M377.8 231.2Q377.5 212.5 385.9 204.4"/><path d="M398.0 231.4Q398.8 211.4 409.1 203.2"/><path d="M418.3 232.6Q420.2 211.4 432.5 203.3"/><path d="M438.6 234.9Q441.7 212.4 456.2 204.5"/><path d="M458.9 238.3Q463.4 214.4 480.2 207.0"/><path d="M479.2 242.6Q485.2 217.6 504.4 210.8"/><path d="M499.4 248.1Q507.1 221.7 529.0 215.9"/><path d="M519.7 254.5Q529.2 227.0 553.7 222.3"/><path d="M540.0 262.0Q551.3 233.4 578.7 230.0"/></g></g>
         </svg>
         <div class="sobrancelhas__texto">
-          <h2 class="titulo reveal" id="sobrancelhas-titulo">Sobrancelha desenhada pro seu rosto.</h2>
+          <h2 class="titulo" data-chars id="sobrancelhas-titulo">Sobrancelha desenhada pro seu rosto.</h2>
           <p class="reveal">Antes de tirar qualquer fio, a Ingridi olha o formato do seu rosto e o seu jeito. A ideia é emoldurar o olhar, sem te deixar com cara de outra pessoa.</p>
           <p class="reveal">Dá pra marcar junto com as unhas e sair com tudo pronto no mesmo dia.</p>
           <a class="btn btn--escuro reveal" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Quero%20agendar%20um%20design%20de%20sobrancelha.%20Tem%20hor%C3%A1rio%3F" target="_blank" rel="noopener noreferrer" data-wa="sobrancelha">Agendar design de sobrancelha</a>
@@ -164,11 +236,11 @@
 
     <section class="sobre" id="sobre" aria-labelledby="sobre-titulo">
       <div class="sobre__in wrap">
+        <h2 class="sobre__frase" id="sobre-titulo" data-scrub>“Quando se faz com amor, não é trabalho.”</h2>
         <figure class="sobre__retrato reveal">
           <img src="/img/ingridi-retrato-768.webp" srcset="/img/ingridi-retrato-480.webp 480w, /img/ingridi-retrato-768.webp 768w" sizes="(min-width: 56em) 34vw, 92vw" width="768" height="768" alt="Ingridi sorrindo, de jaleco preto com o nome bordado em dourado e luvas pretas, segurando um vidro de esmalte em gel" loading="lazy" decoding="async">
         </figure>
         <div class="sobre__texto">
-          <h2 class="sobre__frase reveal" id="sobre-titulo">“Quando se faz com amor, não é trabalho.”</h2>
           <p class="reveal">Ingridi Morokoski é designer de sobrancelhas e manicure especializada em unhas em gel. Atende de luvas, com hora marcada e no tempo que a sua unha pede.</p>
           <p class="reveal">Ela gosta de ver a reação de quem olha a mão pronta pela primeira vez. Às vezes é assim:</p>
         </div>
@@ -181,7 +253,7 @@
 
     <section class="como" aria-labelledby="como-titulo">
       <div class="como__in wrap">
-        <h2 class="titulo reveal" id="como-titulo">Do WhatsApp até a mão pronta.</h2>
+        <h2 class="titulo" data-chars id="como-titulo">Do WhatsApp até a mão pronta.</h2>
         <ol class="passos">
           <li class="passo reveal"><h3>Manda uma mensagem</h3><p>Conta o que você quer, manda uma foto daqui ou a unha que você montou.</p></li>
           <li class="passo reveal"><h3>Combina o horário</h3><p>A Ingridi responde com o valor e os horários livres na agenda.</p></li>
@@ -192,7 +264,7 @@
 
     <section class="cuidados" id="cuidados" aria-labelledby="cuidados-titulo">
       <div class="cuidados__in wrap">
-        <h2 class="titulo reveal" id="cuidados-titulo">Pra durar mais.</h2>
+        <h2 class="titulo" data-chars id="cuidados-titulo">Pra durar mais.</h2>
         <div class="cuidados__col reveal">
           <h3>Unhas em gel</h3>
           <ul>
@@ -216,7 +288,7 @@
 
     <section class="faq" id="duvidas" aria-labelledby="faq-titulo">
       <div class="faq__in wrap">
-        <h2 class="titulo reveal" id="faq-titulo">Antes de você perguntar.</h2>
+        <h2 class="titulo" data-chars id="faq-titulo">Antes de você perguntar.</h2>
         <div class="faq__lista">
           <details class="reveal">
             <summary>Quanto custa?</summary>
@@ -244,8 +316,8 @@
 
     <section class="convite" id="agendar" aria-labelledby="convite-titulo">
       <div class="convite__in wrap">
-        <h2 class="convite__titulo reveal" id="convite-titulo">Sua próxima unha começa numa mensagem.</h2>
-        <a class="btn btn--grande reveal" href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vim%20pelo%20seu%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" data-wa="convite">Agendar pelo WhatsApp</a>
+        <h2 class="convite__titulo" data-chars id="convite-titulo">Sua próxima unha começa numa mensagem.</h2>
+        <a class="btn btn--grande reveal" data-magnetic href="https://wa.me/5567993015257?text=Oi%2C%20Ingridi!%20Vim%20pelo%20seu%20site%20e%20quero%20agendar%20um%20hor%C3%A1rio." target="_blank" rel="noopener noreferrer" data-wa="convite">Agendar pelo WhatsApp</a>
       </div>
     </section>
   </main>
