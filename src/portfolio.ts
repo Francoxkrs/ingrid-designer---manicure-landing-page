@@ -13,7 +13,6 @@ export function initPortfolio(): void {
       if (ok) n++;
     }
     for (const c of chips) c.setAttribute("aria-pressed", String(c.dataset.estilo === estilo));
-    dispatchEvent(new Event("galeria:medir"));
     if (status) status.textContent = `${n} ${n === 1 ? "trabalho" : "trabalhos"}`;
     if (push) {
       const url = new URL(location.href);
